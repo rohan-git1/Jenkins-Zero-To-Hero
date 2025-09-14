@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'ls -la' // confirms files are present
+        sh 'ls -la' // optional: confirms files are present
         sh 'npm install --unsafe-perm=true'
       }
     }
@@ -17,10 +17,5 @@ pipeline {
         sh 'npm start'
       }
     }
-    stage('Debug') {
-  steps {
-    sh 'find /main -name package.json'
-  }
-}
   }
 }
