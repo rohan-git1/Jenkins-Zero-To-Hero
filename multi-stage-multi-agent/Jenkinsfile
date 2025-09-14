@@ -1,20 +1,19 @@
 pipeline {
-  agent none
+  agent {
+    docker {
+      image 'node:16-alpine'
+      args '-p 3000:3000' // Maps container port to host port
+    }
+  }
   stages {
-    stage('Back-end') {
-      agent {
-        docker { image 'maven:3.8.1-adoptopenjdk-11' }
-      }
+    stage('Install') {
       steps {
-        sh 'mvn --version'
+        sh 'npm install'
       }
     }
-    stage('Front-end') {
-      agent {
-        docker { image 'node:16-alpine' }
-      }
+    stage('Start Server') {
       steps {
-        sh 'node --version'
+        sh 'npm start'
       }
     }
   }
