@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Install') {
       steps {
+        sh 'ls -la' // confirms files are present
         sh 'npm install --unsafe-perm=true'
       }
     }
